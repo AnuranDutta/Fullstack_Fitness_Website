@@ -1,0 +1,69 @@
+<style>
+    @import "https://use.fontawesome.com/releases/v5.5.0/css/all.css";
+
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: sans-serif;
+        background: url(https://www.desktopbackground.org/download/1600x900/2010/06/17/34466_top-gym-background-images-for-pinterest_1920x1080_h.jpg) no-repeat;
+        background-size: cover;
+    }
+
+    .login-box {
+        width: 280px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: white;
+    }
+
+    .textbox,
+    input {
+        width: 100%;
+        overflow: hidden;
+        font-size: 20px;
+        padding: 8px 0;
+        margin: 8px 0;
+        border-bottom: 1px solid #4caf50;
+        background: solid;
+        text-decoration-color: white;
+    }
+
+    .btn {
+        text-decoration: none;
+        width: 100%;
+        background: none;
+        border: 2px solid #4caf50;
+        color: white;
+        padding: 5px;
+        font-size: 18px;
+        cursor: pointer;
+        margin: 12px 0;
+    }
+</style>
+
+<body>
+    <div class="login-box">
+        <h1>Login:</h1>
+        <% if(messages.error) { %>
+        <%= messages.error %>
+        <% } %>
+        <form action="/login" method="POST">
+            <div>
+                <i class="fas fa-user textbox">
+                    <label for="email" style="font-family: sans-serif;">Email</label>
+                </i>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div>
+                <i class="fas fa-lock textbox">
+                    <label for="password" style="font-family: sans-serif;">Password</label>
+                </i>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <button type="submit" class="btn">Login</button>
+        </form>
+        <a href="/register" class="btn">Register</a>
+    </div>
+</body>
