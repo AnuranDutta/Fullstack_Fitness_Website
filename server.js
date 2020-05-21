@@ -9,6 +9,7 @@ const passport = require('passport')
 const flash = require('express-flash')
 const session = require('express-session')
 const methodOverride = require('method-override')
+const users = []
 
 const initializePassport = require('./passport-config')
 initializePassport(
@@ -17,7 +18,6 @@ initializePassport(
     id => users.find(user => user.id === id),
 )
 
-const users = []
 
 app.set('view-engine', 'ejs')
 app.use(express.urlencoded({ extended: false }))
@@ -51,6 +51,12 @@ app.post('/login', checkNotAuthenticated, passport.authenticate('local', {
 
 app.get('/register', checkNotAuthenticated, (req,res) => {
     res.render('register.ejs')
+})
+
+app.post('/bmi', checkAuthenticated, (req,res) => {
+    users[0].bmi = req.body.bmi
+    res.redirect('/bmi')
+    console.log(users)
 })
 
 app.post('/register', checkNotAuthenticated, async (req,res) => {
