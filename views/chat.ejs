@@ -4,24 +4,9 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
+    <script defer src="http://localhost:5000/socket.io/socket.io.js"></script>
+    <script defer src="../static/script.js"></script>
 </head>
-<script>
-    function bmi() {
-        var height = Number(document.getElementById("height").value);
-        var weight = Number(document.getElementById("weight").value);
-        var result = weight / (height * height);
-        localStorage["key"] = result;
-        var status = (result >= 30) ? ("Obese") : (result >= 25) ? ("Overweight") : (result >= 18.5) ? ("Healthy") : "Underweight";
-        var className = (result >= 30) ? ("danger") : (result >= 25) ? ("warning") : (result >= 18.5) ? ("success") : "primary";
-        document.getElementById("result").innerHTML = "You are " + status + "!";
-        document.getElementById("bmi").value=result;
-        document.getElementById("result").className = "text-" + className;
-    }
-    function showMessage() {
-        alert("BMI updated successfully!");
-    }
-</script>
-
 <style>
     button {
         padding: 0;
@@ -32,6 +17,28 @@
     .bmiForm {
         width: 30%;
         transform: translate(120%, 20%);
+    }
+
+    #message-container {
+        width: 30%;
+        transform: translate(120%, 20%);
+    }
+      
+    .messageContainer > *  {
+        display: block;
+        transform: translate(0%, 20%);
+        width: 100%;
+        height: calc(1.5em + .75rem + 2px);
+        padding: .375rem .75rem;
+        font-size: 1rem;
+        font-weight: 400;
+        line-height: 1.5;
+        color: #495057;
+        background-color: #fff;
+        background-clip: padding-box;
+        border: 1px solid #ced4da;
+        border-radius: .25rem;
+        transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
     }
 
     #footer {
@@ -63,13 +70,13 @@
                     <a class="nav-link" href="#">Blogs</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/chat">Chat</a>
+                    <a class="nav-link text-muted" href="/chat">Chat</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown"
                         aria-haspopup="true" aria-expanded="false">Tools</a>
                     <div class="dropdown-menu" aria-labelledby="dropdownId">
-                        <a class="dropdown-item text-muted" href="#">BMI calculator</a>
+                        <a class="dropdown-item" href="\bmi">BMI calculator</a>
                         <a class="dropdown-item" href="#">Diet planner</a>
                     </div>
                 </li>
@@ -77,8 +84,9 @@
             </ul>
             <ul class="navbar-nav">
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="fa fa-user"></i> 
+                    <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">
+                        <i class="fa fa-user"></i>
                         Hi <%= name %>
                     </a>
                     <div class="dropdown-menu" aria-labelledby="dropdownId">
@@ -95,32 +103,18 @@
                 <input class="form-control mr-sm-2" type="text" placeholder="Search">
                 <button class="btn btn-outline-warning my-2 my-sm-0" type="submit">Search</button>
             </form>
-
         </div>
     </nav>
     <!-- Header end -->
-    <form class="bmiForm">
-        <div class="text-center text-primary">
-            <h1>BMI Calculator</h1>
+    <!-- chat body start -->
+    <form id="send-container" class="input-group bmiForm">
+        <input id="message-input" type="text" class="form-control">
+        <div class="input-group-append">
+            <button type="submit" id="send-button" class="btn btn-primary">Send</button>
         </div>
-        <input class="form-control" id="weight" type="text" placeholder="Your weight in kilograms" autocomplete="off" />
-        <br />
-        <input class="form-control" id="height" type="text" placeholder="Your height in meters" autocomplete="off" />
-        <br />
-        <input class="form-control btn btn-primary" type="button" value="Get BMI" onclick="bmi()" />
     </form>
-    <br> 
-    <form action="/bmi" method="POST" class="bmiForm">
-        <hr>
-        <input class="form-control" type="text" id="bmi" name="bmi" placeholder="Your result will be displayed here..." value="" readonly>
-        <br>
-        <div class="text-center">
-            <button type="submit" class="btn btn-success w-100" onclick="showMessage()">Update&nbspResult</button>
-        </div>
-        <p class="" id="result"></p>
-    </form>
-
-
+    <div id="message-container" class="messageContainer"></div>
+    <!-- chat body end -->
     <!-- footer start-->
     <footer class="page-footer font-small bg-warning" id="footer">
 

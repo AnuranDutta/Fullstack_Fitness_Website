@@ -9,7 +9,20 @@ const passport = require('passport')
 const flash = require('express-flash')
 const session = require('express-session')
 const methodOverride = require('method-override')
-const users = []
+const users = [] 
+const users2 = {} // for socket io to store users
+let count = 0
+const io = require('socket.io')(5000)
+
+io.on('connection', socket => {
+    socket.on('new-user', name => {
+        users2[socket.id] = name
+        socket.broadcast.emit('user-connected', name)
+    })
+    socket.on('send-chat-message', message => {
+        socket.broadcast.emit('chat-message', {message: message, name: users2[socket.id]})
+    })
+})
 
 const initializePassport = require('./passport-config')
 initializePassport(
@@ -18,7 +31,7 @@ initializePassport(
     id => users.find(user => user.id === id),
 )
 
-
+app.use("/static", express.static('./static/'));
 app.set('view-engine', 'ejs')
 app.use(express.urlencoded({ extended: false }))
 app.use(flash())
@@ -39,6 +52,14 @@ app.get('/bmi', checkAuthenticated, (req,res) => {
     res.render('bmi.ejs', { name: req.user.name})
 })
 
+app.get('/chat', checkAuthenticated, (req,res) => {
+    res.render('chat.ejs', { name: req.user.name})
+})
+
+app.get('/account', checkAuthenticated, (req,res) => {
+    res.render('account.ejs', { name: req.user.name, email: req.user.email, bmi: req.user.bmi})
+})
+
 app.get('/login', checkNotAuthenticated, (req,res) => {
     res.render('login.ejs')
 })
@@ -54,7 +75,7 @@ app.get('/register', checkNotAuthenticated, (req,res) => {
 })
 
 app.post('/bmi', checkAuthenticated, (req,res) => {
-    users[0].bmi = req.body.bmi
+    users[count - 1].bmi = req.body.bmi
     res.redirect('/bmi')
     console.log(users)
 })
@@ -66,8 +87,10 @@ app.post('/register', checkNotAuthenticated, async (req,res) => {
             id: Date.now().toString(),
             name: req.body.name,
             email: req.body.email,
-            password: hashedPassword
+            password: hashedPassword,
+            bmi: null
         })
+        count++;
         res.redirect('/login')
     } catch {
         res.redirect('/register')

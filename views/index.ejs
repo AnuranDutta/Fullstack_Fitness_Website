@@ -4,7 +4,6 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
 </head>
 <style>
     button {
@@ -32,13 +31,16 @@
         <div class="collapse navbar-collapse" id="collapsibleNavId">
             <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                 <li class="nav-item active">
-                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                    <a class="nav-link text-muted" href="#">Home <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Shop</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Blogs</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/chat">Chat</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown"
@@ -55,12 +57,12 @@
                     <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown"
                         aria-haspopup="true" aria-expanded="false"><i class="fa fa-user"></i> Hi <%= name %></a>
                     <div class="dropdown-menu" aria-labelledby="dropdownId">
+                        <a class="dropdown-item" href="/account">Account Details</a>
                         <a class="dropdown-item" href="user.html">
                             <form action="/logout?_method=DELETE" method="POST">
                                 <button type="submit">Log Out</button>
                             </form>
                         </a>
-                        <a class="dropdown-item" href="#">Trainer</a>
                     </div>
                 </li>
             </ul>

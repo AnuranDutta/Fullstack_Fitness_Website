@@ -1,5 +1,6 @@
 # miniProject
 This project is made as a mini project for 6th semester, B Tech IT, SMIT (Majitar)
+Author: Anuran Dutta (201700244)
 
 Packages used-
 +-- bcrypt@4.0.0
@@ -12,5 +13,6 @@ Packages used-
 +-- method-override@3.0.0
 +-- nodemon@2.0.2
 +-- passport@0.4.1
++-- socket.io@2.3.0
 
 To run type the following command in bash- "npm run devStart"
