@@ -12,7 +12,7 @@ const methodOverride = require('method-override')
 const users = [] 
 const users2 = {} // for socket io to store users
 let count = 0
-const io = require('socket.io')(5000)
+const io = require('socket.io')(process.env.PORT || 5000)//for local hosting
 
 io.on('connection', socket => {
     socket.on('new-user', name => {
