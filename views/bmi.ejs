@@ -14,7 +14,7 @@
         var status = (result >= 30) ? ("Obese") : (result >= 25) ? ("Overweight") : (result >= 18.5) ? ("Healthy") : "Underweight";
         var className = (result >= 30) ? ("danger") : (result >= 25) ? ("warning") : (result >= 18.5) ? ("success") : "primary";
         document.getElementById("result").innerHTML = "You are " + status + "!";
-        document.getElementById("bmi").value=result;
+        document.getElementById("bmi").value = result;
         document.getElementById("result").className = "text-" + className;
     }
     function showMessage() {
@@ -23,6 +23,32 @@
 </script>
 
 <style>
+    html,
+    body {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+    }
+
+    #container {
+        min-height: 100%;
+        position: relative;
+    }
+
+    #body {
+        padding: 10px;
+        padding-bottom: 80px;
+        /* Height of the footer */
+    }
+
+    #footer {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        height: 60px;
+        /* Height of the footer */
+    }
+
     button {
         padding: 0;
         border: none;
@@ -30,108 +56,116 @@
     }
 
     .bmiForm {
-        width: 30%;
-        transform: translate(120%, 20%);
-    }
-
-    #footer {
-        position: absolute;
-        bottom: 0;
-        width: 100%;
-        height: 4rem;
+        width: 18rem;
+        position: relative;
+        left: 50%;
+        right: 50%;
+        transform: translate(-50%,0%);
     }
 </style>
 
 <body>
-    <!-- Header start -->
-    <nav class="navbar navbar-expand-sm navbar-dark" style="background-color: #254175;">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRR4hm66ZVaEK_uLX27bGsSu1aPphvt_SsljaljmcDpjJ1CZKbE"
-            class="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}" alt=""
-            width="60px">
-        <a class="navbar-brand" href="#" style="color: rgb(247, 191, 51);">&nbsp;BravoFitness</a>
-        <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId"
-            aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation"></button>
-        <div class="collapse navbar-collapse" id="collapsibleNavId">
-            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-                <li class="nav-item active">
-                    <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Shop</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Blogs</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/chat">Chat</a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown"
-                        aria-haspopup="true" aria-expanded="false">Tools</a>
-                    <div class="dropdown-menu" aria-labelledby="dropdownId">
-                        <a class="dropdown-item text-muted" href="#">BMI calculator</a>
-                        <a class="dropdown-item" href="#">Diet planner</a>
-                    </div>
-                </li>
+    <div id="container">
+        <div id="header">
+            <!-- Header start -->
+            <nav class="navbar navbar-expand-sm navbar-dark" style="background-color: #254175;">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRR4hm66ZVaEK_uLX27bGsSu1aPphvt_SsljaljmcDpjJ1CZKbE"
+                    class="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}" alt=""
+                    width="60px">
+                <a class="navbar-brand" href="#" style="color: rgb(247, 191, 51);">&nbsp;BravoFitness</a>
+                <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse"
+                    data-target="#collapsibleNavId" aria-controls="collapsibleNavId" aria-expanded="false"
+                    aria-label="Toggle navigation"></button>
+                <div class="collapse navbar-collapse" id="collapsibleNavId">
+                    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Shop</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Blogs</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/chat">Chat</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">Tools</a>
+                            <div class="dropdown-menu" aria-labelledby="dropdownId">
+                                <a class="dropdown-item text-muted" href="#">BMI calculator</a>
+                                <a class="dropdown-item" href="#">Diet planner</a>
+                            </div>
+                        </li>
 
-            </ul>
-            <ul class="navbar-nav">
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="fa fa-user"></i> 
-                        Hi <%= name %>
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="dropdownId">
-                        <a class="dropdown-item" href="/account">Account Details</a>
-                        <a class="dropdown-item" href="user.html">
-                            <form action="/logout?_method=DELETE" method="POST">
-                                <button type="submit">Log Out</button>
-                            </form>
-                        </a>
-                    </div>
-                </li>
-            </ul>
-            <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="text" placeholder="Search">
-                <button class="btn btn-outline-warning my-2 my-sm-0" type="submit">Search</button>
+                    </ul>
+                    <ul class="navbar-nav">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">
+                                <i class="fa fa-user"></i>
+                                Hi <%= name %>
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="dropdownId">
+                                <a class="dropdown-item" href="/account">Account Details</a>
+                                <a class="dropdown-item" href="user.html">
+                                    <form action="/logout?_method=DELETE" method="POST">
+                                        <button type="submit">Log Out</button>
+                                    </form>
+                                </a>
+                            </div>
+                        </li>
+                    </ul>
+                    <form class="form-inline my-2 my-lg-0">
+                        <input class="form-control mr-sm-2" type="text" placeholder="Search">
+                        <button class="btn btn-outline-warning my-2 my-sm-0" type="submit">Search</button>
+                    </form>
+
+                </div>
+            </nav>
+            <!-- Header end -->
+        </div>
+        <div id="body">
+            <form class="bmiForm">
+                <div class="text-center text-primary">
+                    <h1>BMI Calculator</h1>
+                </div>
+                <input class="form-control" id="weight" type="text" placeholder="Your weight in kilograms"
+                    autocomplete="off" />
+                <br />
+                <input class="form-control" id="height" type="text" placeholder="Your height in meters"
+                    autocomplete="off" />
+                <br />
+                <input class="form-control btn btn-primary" type="button" value="Get BMI" onclick="bmi()" />
             </form>
-
+            <br>
+            <form action="/bmi" method="POST" class="bmiForm">
+                <hr>
+                <input class="form-control" type="text" id="bmi" name="bmi"
+                    placeholder="Your result will be displayed here..." value="" readonly>
+                <br>
+                <div class="text-center">
+                    <button type="submit" class="btn btn-success w-100"
+                        onclick="showMessage()">Update&nbspResult</button>
+                </div>
+                <p class="" id="result"></p>
+            </form>
         </div>
-    </nav>
-    <!-- Header end -->
-    <form class="bmiForm">
-        <div class="text-center text-primary">
-            <h1>BMI Calculator</h1>
+        <div id="footer">
+            <!-- footer start-->
+            <footer class="page-footer font-small bg-warning" id="footer">
+
+                <!-- Copyright -->
+                <div class="footer-copyright text-center py-3">© 2020 Copyright:
+                    <a href="https://mdbootstrap.com/"> BravoFitness.com</a>
+                </div>
+                <!-- Copyright -->
+
+            </footer>
+            <!-- footer end -->
         </div>
-        <input class="form-control" id="weight" type="text" placeholder="Your weight in kilograms" autocomplete="off" />
-        <br />
-        <input class="form-control" id="height" type="text" placeholder="Your height in meters" autocomplete="off" />
-        <br />
-        <input class="form-control btn btn-primary" type="button" value="Get BMI" onclick="bmi()" />
-    </form>
-    <br> 
-    <form action="/bmi" method="POST" class="bmiForm">
-        <hr>
-        <input class="form-control" type="text" id="bmi" name="bmi" placeholder="Your result will be displayed here..." value="" readonly>
-        <br>
-        <div class="text-center">
-            <button type="submit" class="btn btn-success w-100" onclick="showMessage()">Update&nbspResult</button>
-        </div>
-        <p class="" id="result"></p>
-    </form>
-
-
-    <!-- footer start-->
-    <footer class="page-footer font-small bg-warning" id="footer">
-
-        <!-- Copyright -->
-        <div class="footer-copyright text-center py-3">© 2020 Copyright:
-            <a href="https://mdbootstrap.com/"> BravoFitness.com</a>
-        </div>
-        <!-- Copyright -->
-
-    </footer>
-    <!-- footer end -->
+    </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.min.js"></script>
