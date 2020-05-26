@@ -12,7 +12,9 @@ const methodOverride = require('method-override')
 const users = [] 
 const users2 = {} // for socket io to store users
 let count = 0
-const io = require('socket.io')(5000)//for local hosting
+const server = app.listen(process.env.PORT || 3000)
+const socket = require('socket.io')
+const io = socket.listen(server)//for local hosting
 
 io.on('connection', socket => {
     socket.on('new-user', name => {
@@ -118,4 +120,3 @@ function checkNotAuthenticated(req, res, next) {
 }
 
 
-app.listen(process.env.PORT || 3000)
