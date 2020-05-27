@@ -1,6 +1,7 @@
 # miniProject
 This project is made as a mini project for 6th semester, B Tech IT, SMIT (Majitar)
-Author: Anuran Dutta (201700244)
+Author: Anuran Dutta
+This project is live! Visit- "https://bravo-fitness.herokuapp.com/login"
 
 Packages used-
 +-- bcrypt@4.0.0
