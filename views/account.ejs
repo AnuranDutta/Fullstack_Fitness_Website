@@ -119,7 +119,13 @@
                 </div>
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item">email: <%= email %> </li>
-                    <li class="list-group-item">BMI: <%= bmi %> </li>
+                    <li class="list-group-item">
+                        <% if(bmi){ %>
+                            BMI: <%= bmi %>   
+                        <% } else { %>
+                            BMI: not updated yet.
+                        <% } %>    
+                    </li>
                     <li class="list-group-item">Status: premium member</li>
                 </ul>
                 <div class="card-body">
@@ -141,6 +147,11 @@
             </footer>
             <!-- footer end -->
         </div>
+        <script>
+            var bmi = "<%= bmi %>";
+            bmi = parseFloat(bmi, 10);
+            bmi = bmi.toFixed(2);
+        </script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.slim.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.min.js"></script>
