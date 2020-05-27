@@ -62,6 +62,10 @@ app.get('/account', checkAuthenticated, (req,res) => {
     res.render('account.ejs', { name: req.user.name, email: req.user.email, bmi: req.user.bmi})
 })
 
+app.get('/diet', checkAuthenticated, (req,res) => {
+    res.render('diet.ejs', { name: req.user.name, bmi: req.user.bmi})
+})
+
 app.get('/login', checkNotAuthenticated, (req,res) => {
     res.render('login.ejs')
 })

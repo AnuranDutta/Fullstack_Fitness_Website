@@ -1,0 +1,415 @@
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
+</head>
+
+<style>
+    html,
+    body {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+    }
+
+    #container {
+        min-height: 100%;
+        position: relative;
+    }
+
+    .card {
+        width: 25rem;
+        position: relative;
+        left: 50%;
+        right: 50%;
+        transform: translate(-50%, 0%);
+    }
+
+    #body {
+        padding: 10px;
+        padding-bottom: 60px;
+        /* Height of the footer */
+    }
+
+    #footer {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        height: 60px;
+    }
+
+    button {
+        padding: 0;
+        border: none;
+        background: none;
+    }
+</style>
+
+<body>
+    <div id="container">
+        <div id="header">
+
+            <!-- Header start -->
+            <nav class="navbar navbar-expand-sm navbar-dark" style="background-color: #254175;">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRR4hm66ZVaEK_uLX27bGsSu1aPphvt_SsljaljmcDpjJ1CZKbE"
+                    class="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}" alt=""
+                    width="60px">
+                <a class="navbar-brand" href="#" style="color: rgb(247, 191, 51);">&nbsp;BravoFitness</a>
+                <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse"
+                    data-target="#collapsibleNavId" aria-controls="collapsibleNavId" aria-expanded="false"
+                    aria-label="Toggle navigation"></button>
+                <div class="collapse navbar-collapse" id="collapsibleNavId">
+                    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Shop</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Blogs</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/chat">Chat</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">Tools</a>
+                            <div class="dropdown-menu" aria-labelledby="dropdownId">
+                                <a class="dropdown-item" href="/bmi">BMI calculator</a>
+                                <a class="dropdown-item text-primary" href="#">Diet planner</a>
+                            </div>
+                        </li>
+
+                    </ul>
+                    <ul class="navbar-nav">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">
+                                <i class="fa fa-user"></i>
+                                Hi <%= name %>
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="dropdownId">
+                                <a class="dropdown-item" href="/account">Account Details</a>
+                                <a class="dropdown-item" href="#">
+                                    <form action="/logout?_method=DELETE" method="POST">
+                                        <button type="submit">Log Out</button>
+                                    </form>
+                                </a>
+                            </div>
+                        </li>
+                    </ul>
+                    <form class="form-inline my-2 my-lg-0">
+                        <input class="form-control mr-sm-2" type="text" placeholder="Search">
+                        <button class="btn btn-outline-warning my-2 my-sm-0" type="submit">Search</button>
+                    </form>
+
+                </div>
+            </nav>
+            <!-- Header end -->
+        </div>
+        <div id="body">
+            <div class="container">
+                <div class="jumbotron p-3 p-md-5 text-white rounded bg-dark">
+                    <div class="col-md-6 px-0">
+                        <h1 class="display-4 font-italic">Welcome <%= name %></h1>
+                        <p class="lead my-3">A lot can be spoken about what goes into an ideal diet chart. However,
+                            one’s nutritional requirement varies based on various factors. It could change depending on
+                            gender, for example, male dietary requirements vary from that of a female. Geography can
+                            play a role as well, with North Indian diets being largely different from South Indian ones.
+                            Meal preferences come into play since the consumption of food by a vegetarian or a vegan
+                            differing largely from that by a non-vegetarian.</p>
+                        <p class="h5 text-warning">
+                            <% if(bmi){ %>
+                            Your BMI is <%= bmi %> <br><br>Based on your BMI, here is a 7 day diet plan for you.
+                            <% } else { %>
+                            Please update your BMI and visit.
+                            <% } %>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <% if(bmi) {%>
+            <div class="container-fluid" id="dietId">
+                <main role="main" class="container">
+                    <div class="row">
+                        <div class="col-md-8 blog-main">
+                            <h3 class="pb-3 mb-4 font-italic border-bottom">
+                                <a href="https://www.healthifyme.com/blog/best-indian-diet-plan-weight-loss/">Link to
+                                    original post.</a>
+                            </h3>
+
+                            <div class="blog-post">
+                                <% if (bmi>=30) { %>
+                                <h2 class="blog-post-title">Exteme Weight Loss Diet Plan</h2>
+                                <p class="blog-post-meta">January 17, 2020 Medically Reviewed by Sumita Thomas, Masters
+                                    in Clinical Nutrition and Dietetics</p>
+                                <img class="img-fluid rounded"
+                                    src="https://www.thefitindian.com/wp-content/uploads/2014/03/The-1200-Calorie-Indian-Meal-Plan-for-a-Healthy-Weight-Loss.jpg"
+                                    alt="">
+                                <% } else if(bmi>=25) { %>
+                                <h2 class="blog-post-title">Weight Loss Diet Plan</h2>
+                                <p class="blog-post-meta">January 17, 2020 Medically Reviewed by Sumita Thomas, Masters
+                                    in Clinical Nutrition and Dietetics</p>
+                                <img class="img-fluid rounded"
+                                    src="https://i.dietdoctor.com/wp-content/uploads/2018/10/My-single-best-weight-loss-tip.jpg?auto=compress%2Cformat&w=800&h=450&fit=crop"
+                                    alt="">
+                                <% } else if(bmi>=18.5) { %>
+                                <h2 class="blog-post-title">Healthy Balanced Diet Plan</h2>
+                                <p class="blog-post-meta">January 17, 2020 Medically Reviewed by Sumita Thomas, Masters
+                                    in Clinical Nutrition and Dietetics</p>
+                                <img class="img-fluid rounded"
+                                    src="https://www.9daysfitness.com/c9 clean 9 uae dubai balance diet.png" alt="">
+                                <% } else { %>
+                                <br>
+                                <h2 class="blog-post-title">Weight Gain Diet Plan</h2>
+                                <p class="blog-post-meta">January 17, 2020 Medically Reviewed by Sumita Thomas, Masters
+                                    in Clinical Nutrition and Dietetics</p>
+                                <img class="img-fluid rounded"
+                                    src="https://ukhealthcare.uky.edu/sites/default/files/styles/news_hero/public/2018-10/raw-salmon-with-vegetables.jpg?itok=lCg4WcCB"
+                                    alt="">
+                                <% } %>
+                                <p>We have put together a diet plan for weight loss with Indian food. This 7 day diet
+                                    plan, 1200 calorie diet
+                                    plan
+                                    is a sample, and should not be followed by any individual without consulting with a
+                                    nutritionist.
+                                    <br><br>
+                                <p class="h5">
+                                    Day 1:
+                                </p>
+                                After starting your day with cucumber water, have oats porridge and mixed nuts for
+                                breakfast.
+                                Have a roti with dal and gajar matar sabzi for lunch.
+                                Follow that up with dal and lauki sabzi to go with a roti for dinner.</p>
+                                <hr>
+                                <p class="h5">Diet Chart</p> <br><br>
+                                <p> 6:30 AM Cucumber Detox Water(1 glass)<br><br>
+                                    8:00 AM Oats Porridge in Skimmed Milk(1 bowl)<br>
+                                    Mixed Nuts(25 grams)<br><br>
+                                    12:00 PM Skimmed Milk Paneer(100 grams)<br><br>
+                                    2:00 PM Mixed Vegetable Salad(1 katori)<br><br>
+                                    2:10 PM Dal(1 katori)Gajar Matar Sabzi(1 katori)<br>
+                                    Roti (1 roti/chapati)<br><br>
+                                    4:00 PM Cut Fruits(1 cup)Buttermilk(1 glass)<br><br>
+                                    5:30 PM Tea with Less Sugar and Milk(1 teacup)<br><br>
+                                    8:50 PM Mixed Vegetable Salad(1 katori)<br><br>
+                                    9:00 PM Dal(1 katori)Lauki Sabzi(1 katori)<br>
+                                    Roti (1 roti/chapati) <br><br>
+                                </p>
+                                <hr>
+                                <p class="h5">
+                                    Day 2:
+                                </p> On the second day, eat a mixed vegetable stuffed roti with curd for breakfast.
+                                For lunch, have half a katori of methi rice along with lentil curry.
+                                End your day with sauteed vegetables and green chutney.
+                                </p>
+                                <hr>
+                                <p class="h5">Diet Chart</p> <br><br>
+                                <p>
+                                    6:30 AM Cucumber Detox Water(1 glass)<br><br>
+                                    8:00 AM Curd(1.5 katori)Mixed Vegetable Stuffed Roti(2 piece)<br><br>
+                                    12:00 PM Skimmed Milk Paneer(100 grams)<br><br>
+                                    2:00 PM Mixed Vegetable Salad(1 katori)<br><br>
+                                    2:10 PM Lentil Curry(0.75 bowl)Methi Rice(0.5 katori)<br><br>
+                                    4:00 PM Apple(0.5 small (2-3/4″ dia))Buttermilk(1 glass)<br><br>
+                                    5:30 PM Coffee with Milk and Less Sugar(0.5 tea cup)<br><br>
+                                    8:50 PM Mixed Vegetable Salad(1 katori)<br><br>
+                                    9:00 PM Sauteed Vegetables with Paneer(1 katori)Roti (1 roti/chapati)<br>
+
+                                    Green Chutney(2 tablespoon)<br><br>
+                                </p>
+                                <hr>
+                                <p class="h5">
+                                    Day 3:
+                                </p> Breakfast on day 3 would include Multigrain Toast and Skim Milk Yogurt.
+                                In the afternoon, have sauteed vegetables with paneer and some green chutney.
+                                Half a katori of methi rice and some lentil curry to make sure you end the day on a
+                                healthy note.
+                                </p>
+                                <hr>
+                                <p class="h5">Diet Chart</p> <br><br>
+                                <p>
+                                    6:30 AM Cucumber Detox Water(1 glass) <br><br>
+                                    8:00 AM Skim Milk Yoghurt(1 cup (8 fl oz))Multigrain Toast(2 toast)<br><br>
+                                    12:00 PM Skimmed Milk Paneer(100 grams)<br><br>
+                                    2:00 PM Mixed Vegetable Salad(1 katori)<br><br>
+                                    2:10 PM Sauteed Vegetables with Paneer(1 katori)Roti (1 roti/chapati)<br>
+
+                                    Green Chutney(2 tablespoon)<br><br>
+                                    4:00 PM Banana(0.5 small (6″ to 6-7/8″ long))Buttermilk(1 glass)<br><br>
+                                    5:30 PM Tea with Less Sugar and Milk(1 teacup)<br><br>
+                                    8:50 PM Mixed Vegetable Salad(1 katori)<br><br>
+                                    9:00 PM Lentil Curry(0.75 bowl)Methi Rice(0.5 katori)<br><br>
+                                </p>
+                                <hr>
+                                <p class="h5">
+                                    Day 4:
+                                </p> Start Day 4 with a Fruit and Nuts Yogurt Smoothie and Egg Omelette
+                                Follow that up with Moong Dal, Bhindi Sabzi, and roti.
+                                Complete the day’s food intake with steamed rice and palak chole.
+                                </p>
+                                <hr>
+                                <p class="h5">Diet Chart</p> <br><br>
+                                <p>
+                                    6:30 AM Cucumber Detox Water(1 glass) <br><br>
+                                    8:00 AM Fruit and Nuts Yogurt Smoothie(0.75 glass) <br>
+
+                                    Egg Omelette(1 serve(one egg))<br><br>
+                                    12:00 PM Skimmed Milk Paneer(100 grams)<br><br>
+                                    2:00 PM Mixed Vegetable Salad(1 katori)<br><br>
+                                    2:10 PM Green Gram Whole Dal Cooked(1 katori)Bhindi sabzi(1 katori)<br>
+
+                                    Roti (1 roti/chapati)<br><br>
+                                    4:00 PM Orange(1 fruit (2-5/8″ dia))Buttermilk(1 glass)<br><br>
+                                    5:30 PM Coffee with Milk and Less Sugar(0.5 tea cup)<br><br>
+                                    8:50 PM Mixed Vegetable Salad(1 katori)<br><br>
+                                    9:00 PM Palak Chole(1 bowl)Steamed Rice(0.5 katori)<br><br>
+                                </p>
+                                <hr>
+                                <p class="h5">
+                                    Day 5:
+                                </p> Have a glass of skimmed milk and peas poha for breakfast on the fifth day.
+                                Eat a missi roti with low fat paneer curry in the afternoon.
+                                End the day with roti, curd and aloo baingan tamatar ki sabzi.
+                                </p>
+                                <hr>
+                                <p class="h5">Diet Chart</p> <br><br>
+                                <p>
+                                    6:30 AM Cucumber Detox Water(1 glass)
+                                    <br><br> 8:00 AM Skimmed Milk(1 glass)Peas Poha(1.5 katori)
+                                    <br><br>12:00 PM Skimmed Milk Paneer(100 grams)
+                                    <br><br> 2:00 PM Mixed Vegetable Salad(1 katori)
+                                    <br><br> 2:10 PM Low Fat Paneer Curry(1.5 katori)Missi Roti(1 roti)
+                                    <br><br> 4:00 PM Papaya(1 cup 1″ pieces)Buttermilk(1 glass)
+                                    <br><br> 5:30 PM Tea with Less Sugar and Milk(1 teacup)
+                                    <br><br> 8:50 PM Mixed Vegetable Salad(1 katori)
+                                    <br><br> 9:00 PM Curd(1.5 katori)Aloo Baingan Tamatar Ki Sabzi(1 katori)
+                                    <br><br>
+                                </p>
+                                <hr>
+                                <p class="h5">
+                                    Day 6:
+                                </p> On Day 6, have idli with sambar for breakfast
+                                For lunch, roti with curd and aloo baingan tamatar ki sabzi
+                                To end Day 6, eat green gram with roti and bhindi sabzi
+                                </p>
+                                <hr>
+                                <p class="h5">Diet Chart</p> <br><br>
+                                <p>
+                                    6:30 AM Cucumber Detox Water(1 glass)
+                                    <br><br> 8:00 AM Mixed Sambar(1 bowl)Idli(2 idli)
+                                    <br><br>12:00 PM Skimmed Milk Paneer(100 grams)
+                                    <br><br>2:00 PM Mixed Vegetable Salad(1 katori)
+                                    <br><br>2:10 PM Curd(1.5 katori)Aloo Baingan Tamatar Ki Sabzi(1 katori)
+
+                                    Roti (1 roti/chapati)
+                                    <br><br>4:00 PM Cut Fruits(1 cup)Buttermilk(1 glass)
+                                    <br><br>5:30 PM Coffee with Milk and Less Sugar(0.5 tea cup)
+                                    <br><br> 8:50 PM Mixed Vegetable Salad(1 katori)
+                                    <br><br> 9:00 PM Green Gram Whole Dal Cooked(1 katori)Bhindi sabzi(1 katori)
+
+                                    Roti (1 roti/chapati)<br><br>
+                                </p>
+                                <hr>
+                                <p class="h5">
+                                    Day 7:
+                                </p> On the seventh day, start with besan chilla and green garlic chutney.
+                                Have steamed rice and palak chole for lunch.
+                                End the week on a healthy note with low fat paneer curry and missi roti.
+                                </p>
+                                <hr>
+                                <p class="h5">Diet Chart</p> <br><br>
+                                <p>
+                                    6:30 AM Cucumber Detox Water(1 glass)
+                                    <br><br>8:00 AM Besan Chilla(2 cheela)Green Garlic Chutney(3 tablespoon)
+                                    <br><br>12:00 PM Skimmed Milk Paneer(100 grams)
+                                    <br><br>2:00 PM Mixed Vegetable Salad(1 katori)
+                                    <br><br> 2:10 PM Palak Chole(1 bowl)Steamed Rice(0.5 katori)
+                                    <br><br> 4:00 PM Apple(0.5 small (2-3/4″ dia))Buttermilk(1 glass)
+                                    <br><br> 5:30 PM Tea with Less Sugar and Milk(1 teacup)
+                                    <br><br>8:50 PM Mixed Vegetable Salad(1 katori)
+                                    <br><br> 9:00 PM Low Fat Paneer Curry(1 katori)Missi Roti(1 roti)<br><br>
+                                </p>
+                            </div><!-- /.blog-post -->
+                        </div><!-- /.blog-main -->
+
+                        <aside class="col-md-4 blog-sidebar">
+                            <div class="p-3">
+                                <h4 class="font-italic">Archives</h4>
+                                <ol class="list-unstyled mb-0">
+                                    <li><a href="#">March 2014</a></li>
+                                    <li><a href="#">February 2014</a></li>
+                                    <li><a href="#">January 2014</a></li>
+                                    <li><a href="#">December 2013</a></li>
+                                    <li><a href="#">November 2013</a></li>
+                                    <li><a href="#">October 2013</a></li>
+                                    <li><a href="#">September 2013</a></li>
+                                    <li><a href="#">August 2013</a></li>
+                                    <li><a href="#">July 2013</a></li>
+                                    <li><a href="#">June 2013</a></li>
+                                    <li><a href="#">May 2013</a></li>
+                                    <li><a href="#">April 2013</a></li>
+                                </ol>
+                            </div>
+
+                            <div class="p-3">
+                                <h4 class="font-italic">Elsewhere</h4>
+                                <ol class="list-unstyled">
+                                    <li><a href="#">GitHub</a></li>
+                                    <li><a href="#">Twitter</a></li>
+                                    <li><a href="#">Facebook</a></li>
+                                </ol>
+                            </div>
+                        </aside><!-- /.blog-sidebar -->
+
+                    </div><!-- /.row -->
+
+                </main><!-- /.container -->
+
+                <footer class="blog-footer">
+                    <p>
+                        <a href="#">Back to top</a>
+                    </p>
+                </footer>
+
+                <!-- Bootstrap core JavaScript
+                        ================================================== -->
+                <!-- Placed at the end of the document so the pages load faster -->
+                <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+                    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+                    crossorigin="anonymous"></script>
+                <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
+                <script src="../../assets/js/vendor/popper.min.js"></script>
+                <script src="../../dist/js/bootstrap.min.js"></script>
+                <script src="../../assets/js/vendor/holder.min.js"></script>
+            </div>
+            <% } %>
+        </div>
+        <div id="footer">
+            <!-- footer start-->
+            <footer class="page-footer font-small bg-warning">
+
+                <!-- Copyright -->
+                <div class="footer-copyright text-center py-3">© 2020 Copyright:
+                    <a href="https://mdbootstrap.com/"> BravoFitness.com</a>
+                </div>
+                <!-- Copyright -->
+
+            </footer>
+            <!-- footer end -->
+        </div>
+        <script>
+            var bmi = "<%= bmi %>";
+            bmi = parseFloat(bmi, 10);
+            bmi = bmi.toFixed(2);
+        </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.slim.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    </div>
+</body>
+
+</html>

@@ -18,132 +18,176 @@
         height: 40%;
     }
 
-    /* #footer {
+    html,
+    body {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+    }
+
+    #container {
+        min-height: 100%;
+        position: relative;
+    }
+
+    .card {
+        width: 18rem;
+        position: relative;
+        left: 50%;
+        right: 50%;
+        transform: translate(-50%, 0%);
+    }
+
+    #body {
+        padding: 10px;
+        padding-bottom: 60px;
+        /* Height of the footer */
+    }
+
+    #footer {
         position: absolute;
         bottom: 0;
         width: 100%;
-        height: 4rem;
-    } */
+        height: 60px;
+    }
+
+    button {
+        padding: 0;
+        border: none;
+        background: none;
+    }
 </style>
 
 <body>
-    <!-- Header start -->
-    <nav class="navbar navbar-expand-sm navbar-dark" style="background-color: #254175;">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRR4hm66ZVaEK_uLX27bGsSu1aPphvt_SsljaljmcDpjJ1CZKbE"
-            class="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}" alt=""
-            width="60px">
-        <a class="navbar-brand" href="#" style="color: rgb(247, 191, 51);">&nbsp;BravoFitness</a>
-        <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId"
-            aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation"></button>
-        <div class="collapse navbar-collapse" id="collapsibleNavId">
-            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-                <li class="nav-item active">
-                    <a class="nav-link text-muted" href="#">Home <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Shop</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Blogs</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/chat">Chat</a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown"
-                        aria-haspopup="true" aria-expanded="false">Tools</a>
-                    <div class="dropdown-menu" aria-labelledby="dropdownId">
-                        <a class="dropdown-item" href="\bmi">BMI calculator</a>
-                        <a class="dropdown-item" href="#">Diet planner</a>
+    <div id="container">
+        <div id="header">
+            <!-- Header start -->
+            <nav class="navbar navbar-expand-sm navbar-dark" style="background-color: #254175;">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRR4hm66ZVaEK_uLX27bGsSu1aPphvt_SsljaljmcDpjJ1CZKbE"
+                    class="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}" alt=""
+                    width="60px">
+                <a class="navbar-brand" href="#" style="color: rgb(247, 191, 51);">&nbsp;BravoFitness</a>
+                <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse"
+                    data-target="#collapsibleNavId" aria-controls="collapsibleNavId" aria-expanded="false"
+                    aria-label="Toggle navigation"></button>
+                <div class="collapse navbar-collapse" id="collapsibleNavId">
+                    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                        <li class="nav-item active">
+                            <a class="nav-link text-primary" href="#">Home <span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Shop</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Blogs</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/chat">Chat</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">Tools</a>
+                            <div class="dropdown-menu" aria-labelledby="dropdownId">
+                                <a class="dropdown-item" href="/bmi">BMI calculator</a>
+                                <a class="dropdown-item" href="/diet">Diet planner</a>
+                            </div>
+                        </li>
+
+                    </ul>
+                    <ul class="navbar-nav">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false"><i class="fa fa-user"></i> Hi <%= name %></a>
+                            <div class="dropdown-menu" aria-labelledby="dropdownId">
+                                <a class="dropdown-item" href="/account">Account Details</a>
+                                <a class="dropdown-item" href="user.html">
+                                    <form action="/logout?_method=DELETE" method="POST">
+                                        <button type="submit">Log Out</button>
+                                    </form>
+                                </a>
+                            </div>
+                        </li>
+                    </ul>
+                    <form class="form-inline my-2 my-lg-0">
+                        <input class="form-control mr-sm-2" type="text" placeholder="Search">
+                        <button class="btn btn-outline-warning my-2 my-sm-0" type="submit">Search</button>
+                    </form>
+
+                </div>
+            </nav>
+            <!-- Header end -->
+        </div>
+        <div id="carouselId" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">
+                <li data-target="#carouselId" data-slide-to="0" class="active"></li>
+                <li data-target="#carouselId" data-slide-to="1"></li>
+                <li data-target="#carouselId" data-slide-to="2"></li>
+            </ol>
+            <div class="carousel-inner" role="listbox">
+                <div class="carousel-item active carouse">
+                    <img class="responsive" alt="First slide"
+                        src="https://www.mayfairclubs.com/wp-content/uploads/2015/05/personal-training-1600x400.jpg">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h4 class="bg-dark text-white">NO MORE INJURIES or WEEKS WITHOUT ANY RESULTS!</h4>
+                        <p class="text-warning">Hire personal trainer at prices as low as Rs 1000.00 per month!</p>
                     </div>
-                </li>
-
-            </ul>
-            <ul class="navbar-nav">
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown"
-                        aria-haspopup="true" aria-expanded="false"><i class="fa fa-user"></i> Hi <%= name %></a>
-                    <div class="dropdown-menu" aria-labelledby="dropdownId">
-                        <a class="dropdown-item" href="/account">Account Details</a>
-                        <a class="dropdown-item" href="user.html">
-                            <form action="/logout?_method=DELETE" method="POST">
-                                <button type="submit">Log Out</button>
-                            </form>
-                        </a>
+                </div>
+                <div class="carousel-item">
+                    <img class="responsive" alt="Second slide" src="https://img2.hkrtcdn.com/11451/bnr_1145021_o.jpg">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h4 class="bg-dark text-white">100% authentic products!</h4>
+                        <p class="text-warning">FREE SHIPPING*</p>
                     </div>
-                </li>
-            </ul>
-            <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="text" placeholder="Search">
-                <button class="btn btn-outline-warning my-2 my-sm-0" type="submit">Search</button>
-            </form>
-
+                </div>
+                <div class="carousel-item">
+                    <img alt="Third slide" class="responsive"
+                        src="https://snagfilms-a.akamaihd.net/6a/3e/969fcfbd4c1aa2b3f8c9f43ee070/1994-bodycompostion-diet-exercise-jumbo.jpg">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h4 class="bg-dark text-white">Always stay updated!</h4>
+                        <p class="text-warning">With our fitness blog section.</p>
+                    </div>
+                </div>
+            </div>
+            <a class="carousel-control-prev" href="#carouselId" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselId" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
         </div>
-    </nav>
-    <!-- Header end -->
 
-    <div id="carouselId" class="carousel slide" data-ride="carousel">
-        <ol class="carousel-indicators">
-            <li data-target="#carouselId" data-slide-to="0" class="active"></li>
-            <li data-target="#carouselId" data-slide-to="1"></li>
-            <li data-target="#carouselId" data-slide-to="2"></li>
-        </ol>
-        <div class="carousel-inner" role="listbox">
-            <div class="carousel-item active carouse">
-                <img class="responsive" alt="First slide"
-                    src="https://www.mayfairclubs.com/wp-content/uploads/2015/05/personal-training-1600x400.jpg">
-                <div class="carousel-caption d-none d-md-block">
-                    <h4 class="bg-dark text-white">NO MORE INJURIES or WEEKS WITHOUT ANY RESULTS!</h4>
-                    <p class="text-warning">Hire personal trainer at prices as low as Rs 200.00 per month!</p>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <img class="responsive" alt="Second slide" src="https://img2.hkrtcdn.com/11451/bnr_1145021_o.jpg">
-                <div class="carousel-caption d-none d-md-block">
-                    <h4 class="bg-dark text-white">100% authentic products!</h4>
-                    <p class="text-warning">FREE SHIPPING*</p>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <img alt="Third slide" class="responsive"
-                    src="https://snagfilms-a.akamaihd.net/6a/3e/969fcfbd4c1aa2b3f8c9f43ee070/1994-bodycompostion-diet-exercise-jumbo.jpg">
-                <div class="carousel-caption d-none d-md-block">
-                    <h4 class="bg-dark text-white">Always stay updated!</h4>
-                    <p class="text-warning">With our fitness blog section.</p>
-                </div>
+        <div id="body">
+            <div class="jumbotron">
+                <h1 class="display-3">Hello World!</h1>
+                <p class="lead">Welcome to the world of BravoFitness, your one stop shop for all your fitness needs.
+                </p>
+                <hr class="my-2">
+                <p>We are currently under construction, some of the features are yet to be implemented. Please let us
+                    know
+                    your
+                    thoughts on our website and services through feedback. Thank you!</p>
+                <p class="lead">
+                    <a class="btn btn-primary btn-lg" href="https://forms.gle/CYe9KtH5ZBpxqkPq9" target="_blank"
+                        role="button">Give Feedback</a>
+                </p>
             </div>
         </div>
-        <a class="carousel-control-prev" href="#carouselId" role="button" data-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="sr-only">Previous</span>
-        </a>
-        <a class="carousel-control-next" href="#carouselId" role="button" data-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
-        </a>
+        <div id="footer">
+            <!-- footer start-->
+            <footer class="page-footer font-small bg-warning" id="footer">
+
+                <!-- Copyright -->
+                <div class="footer-copyright text-center py-3">© 2020 Copyright:
+                    <a href="https://mdbootstrap.com/"> BravoFitness.com</a>
+                </div>
+                <!-- Copyright -->
+
+            </footer>
+            <!-- footer end -->
+        </div>
     </div>
-    <div class="jumbotron">
-        <h1 class="display-3">Hello World!</h1>
-        <p class="lead">Welcome to the world of BravoFitness, your one stop shop for all your fitness needs. </p>
-        <hr class="my-2">
-        <p>We are currently under construction, some of the features are yet to be implemented. Please let us know your
-            thoughts on our website and services through feedback. Thank you!</p>
-        <p class="lead">
-            <a class="btn btn-primary btn-lg" href="https://forms.gle/CYe9KtH5ZBpxqkPq9" target="_blank"
-                role="button">Give Feedback</a>
-        </p>
-    </div>
-    <!-- footer start-->
-    <footer class="page-footer font-small bg-warning" id="footer">
-
-        <!-- Copyright -->
-        <div class="footer-copyright text-center py-3">© 2020 Copyright:
-            <a href="https://mdbootstrap.com/"> BravoFitness.com</a>
-        </div>
-        <!-- Copyright -->
-
-    </footer>
-    <!-- footer end -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.min.js"></script>
