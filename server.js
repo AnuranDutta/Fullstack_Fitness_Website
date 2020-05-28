@@ -66,6 +66,18 @@ app.get('/diet', checkAuthenticated, (req,res) => {
     res.render('diet.ejs', { name: req.user.name, bmi: req.user.bmi})
 })
 
+app.get('/shop', checkAuthenticated, (req,res) => {
+    res.render('shop.ejs', { name: req.user.name })
+})
+
+app.get('/cart', checkAuthenticated, (req,res) => {
+    res.render('cart.ejs', { name: req.user.name })
+})
+
+app.get('/blogs', checkAuthenticated, (req,res) => {
+    res.render('blogs.ejs', { name: req.user.name })
+})
+
 app.get('/login', checkNotAuthenticated, (req,res) => {
     res.render('login.ejs')
 })

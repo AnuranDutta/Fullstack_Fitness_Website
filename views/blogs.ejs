@@ -1,0 +1,228 @@
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
+</head>
+
+<style>
+    html,
+    body {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+    }
+
+    #container {
+        min-height: 100%;
+        position: relative;
+    }
+
+    #body {
+        padding: 10px;
+        padding-bottom: 60px;
+        /* Height of the footer */
+    }
+
+    #footer {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        height: 60px;
+    }
+
+    button {
+        padding: 0;
+        border: none;
+        background: none;
+    }
+</style>
+
+<body>
+    <div id="container">
+        <div id="header">
+
+            <!-- Header start -->
+            <nav class="navbar navbar-expand-sm navbar-dark" style="background-color: #254175;">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRR4hm66ZVaEK_uLX27bGsSu1aPphvt_SsljaljmcDpjJ1CZKbE"
+                    class="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}" alt=""
+                    width="60px">
+                <a class="navbar-brand" href="#" style="color: rgb(247, 191, 51);">&nbsp;BravoFitness</a>
+                <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse"
+                    data-target="#collapsibleNavId" aria-controls="collapsibleNavId" aria-expanded="false"
+                    aria-label="Toggle navigation"></button>
+                <div class="collapse navbar-collapse" id="collapsibleNavId">
+                    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/shop">Shop</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-primary" href="#">Blogs</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/chat">Chat</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">Tools</a>
+                            <div class="dropdown-menu" aria-labelledby="dropdownId">
+                                <a class="dropdown-item" href="/bmi">BMI calculator</a>
+                                <a class="dropdown-item" href="/diet">Diet planner</a>
+                            </div>
+                        </li>
+
+                    </ul>
+                    <ul class="navbar-nav">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">
+                                <i class="fa fa-user"></i>
+                                Hi <%= name %>
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="dropdownId">
+                                <a class="dropdown-item" href="/account">Account Details</a>
+                                <a class="dropdown-item" href="#">
+                                    <form action="/logout?_method=DELETE" method="POST">
+                                        <button type="submit">Log Out</button>
+                                    </form>
+                                </a>
+                            </div>
+                        </li>
+                    </ul>
+                    <form class="form-inline my-2 my-lg-0">
+                        <input class="form-control mr-sm-2" type="text" placeholder="Search">
+                        <button class="btn btn-outline-warning my-2 my-sm-0" type="submit">Search</button>
+                    </form>
+
+                </div>
+            </nav>
+            <!-- Header end -->
+        </div>
+        <div id="body">
+            <div class="container-fluid" id="dietId">
+                <main role="main" class="container">
+                    <div class="row">
+                        <div class="col-md-8 blog-main">
+                            <h3 class="pb-3 mb-4 font-italic border-bottom">
+                                <a href="https://www.sciencedaily.com/releases/2019/10/191019154000.htm">Link to
+                                    original post.</a>
+                            </h3>
+
+                            <div class="blog-post">
+                                <h2 class="blog-post-title">Limiting mealtimes may increase your motivation for exercise
+                                </h2>
+                                <p class="blog-post-meta">Source: <a href="http://www.endocrinology.org"> Society for Endocrinology</a></p>
+                                <img class="img-fluid rounded"
+                                    src="https://static.pressfrom.info/upload/images/real/2019/10/22/limiting-mealtimes-may-increase-motivation-for-exercise__210277_.jpg?content=1"
+                                    alt="">
+                                <p class="text-justify">
+                                    <br>Limiting access to food in mice increases levels of the hormone, ghrelin, which may
+                                    also increase motivation to exercise, according to a study published in the Journal
+                                    of Endocrinology. The study suggests that a surge in levels of appetite-promoting
+                                    hormone, ghrelin, after a period of fasting prompted mice to initiate voluntary
+                                    exercise. These novel findings indicate that better diet control, for example
+                                    limiting food intake to mealtimes or fasting intermittently, could help overweight
+                                    people maintain a more effective exercise routine, lose weight and avoid
+                                    debilitating complications such as diabetes and heart disease.
+
+                                    <br><br> Obesity is a costly and growing, global health epidemic that needs more effective
+                                    intervention strategies to avoid serious complications including heart disease and
+                                    diabetes. Food restriction and regular exercise are the two main cost-effective
+                                    strategies to prevent and treat obesity; however the condition is often associated
+                                    with a sedentary lifestyle and bad eating habits, such as snacking and binge eating.
+                                    Consequently, adhering to a regular exercise regime can be difficult due to an
+                                    inability to exercise for a prolonged period or a lack of motivation. Ghrelin, often
+                                    referred to as the 'hunger hormone', stimulates appetite through actions on the
+                                    brain reward circuitry that increase motivation to eat. It has also been reported to
+                                    be essential for endurance exercise by increasing metabolism to meet the energy
+                                    demands of prolonged exercise. Although previous studies have suggested a
+                                    relationship between ghrelin and exercise, it is not known whether ghrelin levels
+                                    have a direct effect on motivation to exercise.
+
+                                    <br><br>In this study, Dr Yuji Tajiri and colleagues from Kurume University School of
+                                    Medicine in Japan, investigated the relationship between exercise and ghrelin levels
+                                    in mice. Food intake and wheel-running activity were compared in mice given free
+                                    access to food and those fed only twice a day for a limited time. Although both
+                                    groups ate a similar amount of food, the restricted mice ran significantly more.
+                                    Mice genetically altered to have no ghrelin and on the restricted feeding diet ran
+                                    less than the mice given free access, however, this could be reversed by
+                                    administering ghrelin. Furthermore, mice given free access to food and given ghrelin
+                                    also ran significantly more. These findings suggest that ghrelin may play an
+                                    important role in the motivation for both feeding and exercise, in response to
+                                    restricted eating plans.
+
+                                    <br><br>Dr Tajiri comments, "Our findings suggest that hunger, which promotes ghrelin
+                                    production, may also be involved in increasing motivation for voluntary exercise,
+                                    when feeding is limited. Therefore, maintaining a healthy eating routine, with
+                                    regular mealtimes or fasting, could also encourage motivation for exercise in
+                                    overweight people."
+
+                                    <br><br>However, Dr Tajiri cautions. "These findings and previous reports are based on
+                                    animal studies; so much more work is needed to confirm that this ghrelin response is
+                                    also present in people. If it can be established in clinical practice, it not only
+                                    opens up new cost-effective diet and exercise strategies but may also indicate a new
+                                    therapeutic application for ghrelin-mimicking drugs."
+
+                                    <br><br>Dr Tajiri and his team now plan to carry out more experiments to confirm these
+                                    findings in humans, to further characterise how ghrelin acts in the brain to produce
+                                    motivation to eat or exercise and to explore any potential real-world, clinical
+                                    benefits for the treatment and prevention of obesity.
+
+                                </p>
+
+                                <div class="p-3">
+                                    <h4 class="font-italic">Elsewhere</h4>
+                                    <ol class="list-unstyled">
+                                        <li><a href="#">GitHub</a></li>
+                                        <li><a href="#">Twitter</a></li>
+                                        <li><a href="#">Facebook</a></li>
+                                    </ol>
+                                </div>
+                                </aside><!-- /.blog-sidebar -->
+
+                            </div><!-- /.row -->
+
+                </main><!-- /.container -->
+
+                <footer class="blog-footer">
+                    <p>
+                        <a href="#">Back to top</a>
+                    </p>
+                </footer>
+
+                <!-- Bootstrap core JavaScript
+                        ================================================== -->
+                <!-- Placed at the end of the document so the pages load faster -->
+                <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+                    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+                    crossorigin="anonymous"></script>
+                <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
+                <script src="../../assets/js/vendor/popper.min.js"></script>
+                <script src="../../dist/js/bootstrap.min.js"></script>
+                <script src="../../assets/js/vendor/holder.min.js"></script>
+            </div>
+        </div>
+        <div id="footer">
+            <!-- footer start-->
+            <footer class="page-footer font-small bg-warning">
+
+                <!-- Copyright -->
+                <div class="footer-copyright text-center py-3">#BravoFitness <a
+                        href="https://github.com/AnuranDutta/miniProject" target="__blank"><i class="fab fa-github"></i>
+                        GitHub</a></div>
+                <!-- Copyright -->
+
+            </footer>
+            <!-- footer end -->
+        </div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.slim.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    </div>
+</body>
+
+</html>
